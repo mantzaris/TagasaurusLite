@@ -18,7 +18,10 @@
     "directories": {
       "output": "build"
     },
-    "files": ["dist/**/*", "package.json"],
+    "files": [
+      "dist/**/*",
+      "package.json"
+    ],
     "win": {
       "target": "nsis",
       "icon": "path/to/your/icon/icon.ico"

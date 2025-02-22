@@ -3,3 +3,6 @@ dist/
 build/
 package-lock.json
 .DS_Store
+
+./renderer/node_modules
+./renderer/package-lock.json
