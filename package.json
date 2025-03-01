@@ -1,7 +1,7 @@
 {
-  "name": "electron-svelte",
+  "name": "tagasauruslite",
   "version": "0.0.1",
-  "description": "A simple electron/svelte/electron-builder template for building cross platform apps.",
+  "description": "A Lite Tagasaurus to help you tag your planet",
   "main": "dist/electron/app.js",
   "scripts": {
     "dev": "concurrently --kill-others \"npm run dev:renderer\" \"npm run dev:electron\" \"cd electron && tsc -w\"",
@@ -14,7 +14,7 @@
   },
   "build": {
     "appId": "your.app.id",
-    "productName": "YourProductName",
+    "productName": "TagasaurusLite",
     "directories": {
       "output": "build"
     },
@@ -37,15 +37,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tlaceby/electron-svelte.git"
+    "url": "githttps://github.com/mantzaris/TagasaurusLite.git"
   },
-  "keywords": [],
+  "keywords": ["tagging","photos","machine learning","tagasaurus"],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/tlaceby/electron-svelte/issues"
+    "url": "https://github.com/mantzaris/TagasaurusLite/issues"
   },
-  "homepage": "https://github.com/tlaceby/electron-svelte#readme",
+  "homepage": "https://github.com/mantzaris/TagasaurusLite",
   "devDependencies": {
     "concurrently": "^8.2.2",
     "electron": "^28.2.3",

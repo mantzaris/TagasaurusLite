@@ -1,30 +1,23 @@
 <script lang="ts">
-  import ipc from "./ipc";
+  import Router from "svelte-spa-router";
+  import Test from "./routes/Test.svelte";
+  import MainMenu from "./routes/main-menu/MainMenu.svelte";
 
-  let electronVersion: string = $state();
-  let nodeVersion: string = $state();
+  const routes = {
+    "/test": Test,
+    "/main-menu": MainMenu,
 
-  let nodeVersionTxt = $derived(nodeVersion ? `Node: ${nodeVersion}` : "Node Version");
-  let electronVersionTxt = $derived(
-    electronVersion ? `Electron: ${electronVersion}` : "Electron Version",
-  );
+    "*": MainMenu
+  };
 
-  async function getVersion(opt: "electron" | "node") {
-    const version = await ipc.getVersion(opt);
-
-    if (opt === "electron") {
-      electronVersion = version;
-    } else {
-      nodeVersion = version;
-    }
-  }
 </script>
 
 <main>
-  <h1>Electron + Svelte</h1>
 
-  <div class="buttons">
-    <button class="btn" onclick={() => getVersion("node")}>{nodeVersionTxt}</button>
-    <button class="btn" onclick={() => getVersion("electron")}>{electronVersionTxt}</button>
-  </div>
+
+  <Router routes={routes} />
+
+  FOOBAR BAZ
+  <i class="fa-solid fa-house"></i>
+
 </main>

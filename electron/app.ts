@@ -10,14 +10,14 @@ async function main() {
   mainWindow = new BrowserWindow({
     width: 700,
     height: 600,
-    resizable: false,
+    resizable: true,
     show: false,
     webPreferences: {
-      devTools: true || !app.isPackaged,
+      devTools: !app.isPackaged,
       preload: join(__dirname, "preload.js"),
     },
   });
-
+  
   if (app.isPackaged) {
     mainWindow.loadFile(join(__dirname, "../renderer/index.html"));
   } else {
