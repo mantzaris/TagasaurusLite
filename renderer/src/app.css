@@ -4,6 +4,9 @@
   src: url("../assets/nunito/Nunito-VariableFont_wght.ttf");
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
 
 /* * {
   font-family: "Nunito" !important;

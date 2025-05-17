@@ -4,12 +4,10 @@
   "description": "A Lite Tagasaurus to help you tag your planet",
   "main": "dist/electron/app.js",
   "scripts": {
-    "dev": "concurrently --kill-others \"npm run dev:renderer\" \"npm run dev:electron\" \"cd electron && tsc -w\"",
+    "dev": "npm run build:renderer && npm run build:electron && electron .",
     "package": "npm run build:renderer && npm run build:electron && electron-builder",
     "build:electron": "cd electron && tsc",
     "build:renderer": "cd renderer && npm run build",
-    "dev:renderer": "cd renderer && npm run dev",
-    "dev:electron": "npm run build:electron && electron .",
     "format": "prettier --write ."
   },
   "build": {
