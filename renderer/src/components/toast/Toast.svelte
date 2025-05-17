@@ -1,12 +1,14 @@
 <script lang="ts">
-	import { type ToastKind } from './toast';
+  import type { Toast } from './toast.svelte';
     
-    let {}
+  let {toast}:{toast:Toast} = $props();
+
     
 
 </script>
 
 
-<div class="alert alert-primary" role="alert">
-    A simple primary alert—check it out!
+
+<div class={`alert alert-${toast.kind}`} role="alert">
+    {toast.content}
 </div>
