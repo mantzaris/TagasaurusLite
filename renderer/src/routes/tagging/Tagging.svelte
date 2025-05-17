@@ -1,9 +1,7 @@
 <script lang="ts">
 	import Upload from './Upload.svelte';
-	import Pill from './../../components/Pill.svelte';
-  import { toast } from '../../components/toast/toast.svelte';
-
-    
+	import Pill from '../../components/Pill.svelte';
+	import { toast } from '../../components/toast/toastSvc.svelte';
 </script>
 
 
@@ -12,15 +10,15 @@
 
     <div class="d-flex justify-content-between align-items-center">
         <div>
-            <img src="./renderer/assets/branding/cuttleFish.png" alt="" height="64px">
+            <img src={window['ASSET_PATH'].branding.cuttleFish} alt="Tagasaurus Logo" height="64px">
             <span id="tagasaurus-text" class="m-4">Tagasaurus</span>
         </div>
     
         <div class="d-flex">
             <Upload/>
-            <button class="btn btn-outline-dark btn-sm" onclick={()=>toast(1000,"primary","This is a test")}><i class="fa-solid fa-circle-nodes pe-1"></i> Face Map</button>
-            <button class="btn btn-outline-dark btn-sm" onclick={()=>toast(2000,"dark","This is a new test")}><i class="fa-solid fa-users-viewfinder pe-1"></i> Stream Search</button>
-            <button class="btn btn-outline-dark btn-sm" onclick={()=>toast(3000,"warning","This is another test")}><i class="fa-solid fa-cog pe-1"></i> Settings</button>
+            <button class="btn btn-outline-dark btn-sm" on:click={()=>toast(1000,"primary","This is a test")}><i class="fa-solid fa-circle-nodes pe-1"></i> Face Map</button>
+            <button class="btn btn-outline-dark btn-sm" on:click={()=>toast(2000,"dark","This is a new test")}><i class="fa-solid fa-users-viewfinder pe-1"></i> Stream Search</button>
+            <button class="btn btn-outline-dark btn-sm" on:click={()=>toast(3000,"warning","This is another test")}><i class="fa-solid fa-cog pe-1"></i> Settings</button>
         </div>
     </div>
 

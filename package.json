@@ -50,6 +50,7 @@
   },
   "homepage": "https://github.com/mantzaris/TagasaurusLite",
   "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^5.0.3",
     "concurrently": "^8.2.2",
     "electron": "^28.2.3",
     "electron-builder": "^24.9.1",

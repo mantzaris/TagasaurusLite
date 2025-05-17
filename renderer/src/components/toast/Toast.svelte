@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Toast } from './toast.svelte';
+  import type { Toast } from './toastService';
     
   let {toast}:{toast:Toast} = $props();
 

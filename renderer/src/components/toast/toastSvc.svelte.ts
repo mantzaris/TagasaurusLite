@@ -20,4 +20,5 @@ export class Toast{
 export function toast(d: number, k:ToastKind, c:string) {
     const toast = new Toast(d,k,c);
     const uid = toast.uid;
-    TOAST_STORE.push(toast);}
+    TOAST_STORE.push(toast);
+}
