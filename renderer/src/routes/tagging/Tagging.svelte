@@ -16,9 +16,9 @@
     
         <div class="d-flex">
             <Upload/>
-            <button class="btn btn-outline-dark btn-sm" on:click={()=>toast(1000,"primary","This is a test")}><i class="fa-solid fa-circle-nodes pe-1"></i> Face Map</button>
-            <button class="btn btn-outline-dark btn-sm" on:click={()=>toast(2000,"dark","This is a new test")}><i class="fa-solid fa-users-viewfinder pe-1"></i> Stream Search</button>
-            <button class="btn btn-outline-dark btn-sm" on:click={()=>toast(3000,"warning","This is another test")}><i class="fa-solid fa-cog pe-1"></i> Settings</button>
+            <button class="btn btn-outline-dark btn-sm" ><i class="fa-solid fa-circle-nodes pe-1"></i> Face Map</button>
+            <button class="btn btn-outline-dark btn-sm" ><i class="fa-solid fa-users-viewfinder pe-1"></i> Stream Search</button>
+            <button class="btn btn-outline-dark btn-sm" ><i class="fa-solid fa-cog pe-1"></i> Settings</button>
         </div>
     </div>
 

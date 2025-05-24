@@ -3,6 +3,8 @@ import { join } from "path";
 
 let mainWindow: BrowserWindow;
 
+
+
 app.once("ready", main);
 
 async function main() {
@@ -34,7 +36,7 @@ ipcMain.handle("dialog:select-files", async (event, args) => {
   }
 
   return await dialog.showOpenDialog(mainWindow, {
-    properties: ['openFile'],
-    defaultPath: dir 
-  })  
+    properties: ['openFile'], //, 'multiSelections'],
+    defaultPath: dir,    
+  })
 })
