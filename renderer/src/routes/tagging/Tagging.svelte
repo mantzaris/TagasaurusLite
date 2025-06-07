@@ -2,6 +2,14 @@
 	import Upload from './Upload.svelte';
 	import Pill from '../../components/Pill.svelte';
 	import { toast } from '../../components/toast/toastSvc.svelte';
+    import { type TaggingRecord } from '../../../../electron/db/tagging';
+  import ipc from '../../ipc';
+
+    let taggingEntries = $state<TaggingRecord[]>([])
+    ipc.getAllFromTagging().then( entries => {
+        taggingEntries = entries;
+    })
+
 </script>
 
 
@@ -50,6 +58,9 @@
                 </div>
             </div>
         </a>
+        {#each taggingEntries as entry}
+            
+        {/each}
     </div>
 </section>
 

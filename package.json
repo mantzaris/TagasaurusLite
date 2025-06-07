@@ -5,32 +5,53 @@
   "main": "dist/electron/app.js",
   "scripts": {
     "dev": "npm-run-all -p build:renderer build:electron && electron .",
-    "package": "npm run build:renderer && npm run build:electron && electron-builder",
+    "build": "npm run build:renderer && npm run build:electron && electron-builder ",
     "build:electron": "cd electron && tsc",
     "build:renderer": "cd renderer && npm run build",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "build-win-nsis": "electron-builder --win=nsis",
+    "build-win-zip": "electron-builder --win=zip"
   },
   "build": {
-    "appId": "your.app.id",
-    "productName": "TagasaurusLite",
-    "directories": {
-      "output": "build"
-    },
+    "appId": "tagasaurus",
+    "asar": true,
     "files": [
+      "config.json",
       "dist/**/*",
-      "package.json"
+      "package.json",
+      "!.github",
+      "!README.md",
+      "!.vscode",
+      "!.prettierrc.json",
+      "!tgdev.sh"
     ],
-    "win": {
-      "target": "nsis",
-      "icon": "path/to/your/icon/icon.ico"
+    "extraFiles": [
+      "config.json"
+    ],
+    "extraResources": [
+      {
+        "from": "./LinuxRunOnExternalMedia",
+        "to": "../LinuxRunOnExternalMedia"
+      }
+    ],
+    "linux": {
+      "icon": "Assets/taga-icon/TagaIcon512x512.png",
+      "maintainer": "mantzaris",
+      "category": "utility"
     },
-    "mac": {
-      "target": "dmg",
-      "icon": "path/to/your/icon/icon.icns"
+    "win": {
+      "icon": "Assets/taga-icon/TagaIcon512x512.png"
+    },
+    "portable": {
+      "artifactName": "tagasaurus.app"
     },
     "nsis": {
       "oneClick": false,
       "allowToChangeInstallationDirectory": true
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "path/to/your/icon/icon.icns"
     }
   },
   "repository": {
@@ -59,6 +80,7 @@
     "prettier-plugin-svelte": "^3.2.1"
   },
   "dependencies": {
+    "@libsql/client": "^0.15.8",
     "electron-reload": "^2.0.0-alpha.1",
     "libsql": "^0.5.11"
   }

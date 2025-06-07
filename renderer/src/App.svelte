@@ -3,9 +3,11 @@
   import Tagging from "./routes/tagging/Tagging.svelte";
   import { TOAST_STORE } from "./components/toast/toastSvc.svelte";
   import Toast from "./components/toast/Toast.svelte";
+  import Test from "./routes/test/Test.svelte";
     
 
   const routes = {
+    '/test': Test,
     '/tagging': Tagging,
     '*': Tagging
   };
@@ -16,6 +18,7 @@
 
 
   <Router routes={routes} />
+  
 
   <div id="toasts-container">
     {#each TOAST_STORE.toasts as toast}

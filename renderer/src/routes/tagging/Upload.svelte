@@ -14,6 +14,12 @@ async function upload() {
     if(results.filePaths.length != 1) {
       return toast("warning", "Currently 1 file upload is permitted at a time")
     }
+
+    const filePath = results.filePaths[0];
+    console.log(filePath);
+
+    const entry = await ipc.createTaggingRecordFromFilePath(filePath);
+    console.log(entry);
 }
 </script>
 

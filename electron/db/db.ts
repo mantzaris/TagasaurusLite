@@ -1,13 +1,11 @@
-import libsql from 'libsql'
+import { Client, createClient } from '@libsql/client';
 import path from 'path';
-import { DB_FILE_NAME, TAGA_DATA_DIRECTORY, TAGGING_TABLE_NAME } from "../config";
+import { DB_FILE_NAME, TAGA_DATA_DIRECTORY } from "../config";
 
-export let db: libsql.Database;
+export let client: Client;
 
-async function initDB():Promise<boolean> {
-    db = new libsql(path.join(TAGA_DATA_DIRECTORY, DB_FILE_NAME),{
-        verbose: console.log
-    });
+export async function initDB():Promise<boolean> {
+    client = createClient({ url:`file:${path.join(TAGA_DATA_DIRECTORY, DB_FILE_NAME)}`});
     
     try {
         //id auto increment
@@ -17,17 +15,18 @@ async function initDB():Promise<boolean> {
         //file_path string
         //face_embeddings ArrayFloat32[]
         //fileType string
-        db.exec(`CREATE TABLE IF NOT EXISTS ${TAGGING_TABLE_NAME} (
+        await client.execute(`CREATE TABLE IF NOT EXISTS tagging (
             id INTEGER PRIMARY KEY, 
             file_path TEXT,
-            file_type TEXT,
+            file_type VARCHAR(50),
             file_hash TEXT,
             title VARCHAR,
             description TEXT, 
             description_embedding F32_BLOB(384), 
-            face_embeddings F32_BLOB(384)
-            )`)
+            face_embeddings F32_BLOB(512)
+            )`);
 
+        
 
     } catch(err) {
         console.error(err);
