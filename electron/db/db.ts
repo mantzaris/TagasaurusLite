@@ -5,7 +5,8 @@ import { DB_FILE_NAME, TAGA_DATA_DIRECTORY } from "../config";
 export let client: Client;
 
 export async function initDB():Promise<boolean> {
-    client = createClient({ url:`file:${path.join(TAGA_DATA_DIRECTORY, DB_FILE_NAME)}`});
+
+    client = createClient({ url:`file:${path.join(TAGA_DATA_DIRECTORY, DB_FILE_NAME)}`, offline: true});
     
     try {
         //id auto increment

@@ -47,20 +47,21 @@
     <h4 class="mb-4">Tagging Records</h4>
 
     <div id="records" class="container-fluid ">
-        <a href="/tagging/0" class="card cursor-pointer" >
-            <div class="d-flex card-body justify-content-between align-items-center">
-                <span>The Labors of Hercules</span>
-                <div class="d-flex gap-1">
-                    <Pill>cat</Pill>
-                    <Pill>hat</Pill>
-                    <Pill>meow</Pill>
-                    <Pill>+5</Pill>
-                </div>
-            </div>
-        </a>
+
         {#each taggingEntries as entry}
-            
+            <a href={`/tagging/${entry.id}`} class="card cursor-pointer" >
+                <div class="d-flex card-body justify-content-between align-items-center">
+                    <span>{entry.title || entry.file_path}</span>
+                    <div class="d-flex gap-1">
+                        <Pill>cat</Pill>
+                        <Pill>hat</Pill>
+                        <Pill>meow</Pill>
+                        <Pill>+5</Pill>
+                    </div>
+                </div>
+            </a>
         {/each}
+
     </div>
 </section>
 

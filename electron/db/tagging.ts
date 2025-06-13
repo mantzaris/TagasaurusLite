@@ -6,7 +6,7 @@ import { client } from "./db"
 export type TaggingRecord = {
     id: bigint,
     file_path: string,
-    filetype: string
+    file_type: string,
     file_hash: string,
     title: string,
     description: string,
@@ -15,10 +15,10 @@ export type TaggingRecord = {
 }
 
 export async function createTaggingRecord(r:TaggingRecord) {
-    const {file_path, filetype, file_hash, title, description, description_embedding, face_embeddings} = r;
+    const {file_path, file_type, file_hash, title, description, description_embedding, face_embeddings} = r;
     const res = await client.execute({
-        sql: `INSERT INTO tagging (file_path, filetype, file_hash, title, description, description_embedding, face_embeddings) values (?,?,?,?,?,?,?)`,
-        args: [file_path, filetype, file_hash, title, description, description_embedding, face_embeddings],
+        sql: `INSERT INTO tagging (file_path, file_type, file_hash, title, description, description_embedding, face_embeddings) values (?,?,?,?,?,?,?)`,
+        args: [file_path, file_type, file_hash, title, description, description_embedding, face_embeddings],
     })
 
     r.id = res.lastInsertRowid;
@@ -26,14 +26,26 @@ export async function createTaggingRecord(r:TaggingRecord) {
 }
 
 
-function taggingRowToTaggingRecord(row: Row) {
-    return {
-        ...row,
-    } as unknown as TaggingRecord;
-}
    
-export async function getAllFromTagging() {
-    const res = await client.execute(`SELECT * FROM tagging;`);
+export async function getAllFromTagging(): Promise<TaggingRecord[]> {
+    try {
+        const res = await client.execute(`SELECT * FROM tagging;`);
+        return res.rows as unknown as TaggingRecord[];
+    } catch(err) {
+        console.error(err);
+        return [];
+    }
 
-    return res.rows.map(taggingRowToTaggingRecord);
+}
+
+
+export async function deleteAllFromTagging(): Promise<boolean> {
+    try {
+        const res = await client.execute(`DELETE FROM tagging`);
+        await client.execute(`VACUUM`);
+        
+        if(res.rowsAffected != 0) return true;
+    } catch(err) {
+        console.error(err);
+    }
 }

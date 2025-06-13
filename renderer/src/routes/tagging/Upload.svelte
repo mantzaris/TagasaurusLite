@@ -5,8 +5,7 @@
 
 async function upload() {
     const results = await ipc.selectFiles();
-    console.log(results);
-    
+        
     if(results.canceled) {
       return toast("info", "Upload Canceled")
     }
@@ -16,11 +15,15 @@ async function upload() {
     }
 
     const filePath = results.filePaths[0];
-    console.log(filePath);
-
     const entry = await ipc.createTaggingRecordFromFilePath(filePath);
-    console.log(entry);
+
+    if(entry instanceof Error) {
+      return toast('danger', entry.message);
+    }
+    
+    console.log({entry});
 }
+
 </script>
 
 
