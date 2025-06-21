@@ -1,16 +1,31 @@
 <script lang="ts">
-  import Router from "svelte-spa-router";
+  // import Router from "svelte-spa-router";
   import Tagging from "./routes/tagging/Tagging.svelte";
   import { TOAST_STORE } from "./components/toast/toastSvc.svelte";
   import Toast from "./components/toast/Toast.svelte";
-  import Test from "./routes/test/Test.svelte";
-    
+  import TaggingEntry from "./routes/tagging-entry/TaggingEntry.svelte";
+  import { Router, type RouteConfig } from "@mateothegreat/svelte5-router";
 
-  const routes = {
-    '/test': Test,
-    '/tagging': Tagging,
-    '*': Tagging
-  };
+  const routes: RouteConfig[] = [
+    {
+      component: Tagging
+    },
+    {
+      path: "tagging",
+      component: Tagging
+    },
+    {
+      path: "/tagging/(?<uid>[a-z0-9]{25})",
+      component: TaggingEntry
+    }
+  ]
+
+  // const routes = {
+  //   '/test': Test,
+  //   '/tagging': Tagging,
+  //   '/tagging/:uid/':TaggingEntry,
+  //   '*': Tagging
+  // };
 
 </script>
 

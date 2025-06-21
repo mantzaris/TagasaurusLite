@@ -1,15 +1,26 @@
 <script lang="ts">
 	import Upload from './Upload.svelte';
 	import Pill from '../../components/Pill.svelte';
-	import { toast } from '../../components/toast/toastSvc.svelte';
     import { type TaggingRecord } from '../../../../electron/db/tagging';
-  import ipc from '../../ipc';
+    import ipc from '../../ipc';
+    import { setContext } from 'svelte';
+  import { goto } from '@mateothegreat/svelte5-router';
 
-    let taggingEntries = $state<TaggingRecord[]>([])
+    let store = $state({
+        taggingEntries: new Array<TaggingRecord>()
+    })
+  
+
+    // let taggingEntries = $state<TaggingRecord[]>([])
     ipc.getAllFromTagging().then( entries => {
-        taggingEntries = entries;
+        store.taggingEntries = entries;
     })
 
+    setContext('tagging-store', store);
+
+    function foo() {
+        console.log("foo")
+    }
 </script>
 
 
@@ -48,8 +59,11 @@
 
     <div id="records" class="container-fluid ">
 
-        {#each taggingEntries as entry}
-            <a href={`/tagging/${entry.id}`} class="card cursor-pointer" >
+        {#each store.taggingEntries as entry}
+            <!-- svelte-ignore a11y_click_events_have_key_events -->
+            <!-- svelte-ignore a11y_no_static_element_interactions -->
+            <!-- svelte-ignore a11y_missing_attribute -->
+            <div onclick={()=>{foo();goto(`/tagging/${entry.id}`)}} class="card cursor-pointer mb-2" >
                 <div class="d-flex card-body justify-content-between align-items-center">
                     <span>{entry.title || entry.file_path}</span>
                     <div class="d-flex gap-1">
@@ -59,7 +73,7 @@
                         <Pill>+5</Pill>
                     </div>
                 </div>
-            </a>
+            </div>
         {/each}
 
     </div>

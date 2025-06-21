@@ -15,7 +15,7 @@
 
 <style>
   div {
-    min-width: 250px;
+    min-width: 300px;
     max-width: 500px;
     overflow: visible;
   }

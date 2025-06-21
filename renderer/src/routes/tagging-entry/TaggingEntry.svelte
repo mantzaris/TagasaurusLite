@@ -1,10 +1,16 @@
 <script lang="ts">
-    type props = {
-        uid: number;
-    };
+  import type { RouteResult } from "@mateothegreat/svelte5-router";
 
-    let {uid}: props = $props();
 
+
+
+    type props = RouteResult;
+
+    let {route}:props = $props();
+
+    console.log(route)
+
+    
     let keywords = $state(["cat","cool","meow"]);
 
 
@@ -12,7 +18,7 @@
 </script>
 
 
-<h1>Tagging Entry, {uid}</h1>
+<!-- <h1>Tagging Entry, {uid}</h1> -->
 
 <br>
 
