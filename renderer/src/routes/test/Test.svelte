@@ -38,7 +38,7 @@ function onFileChange(ev: Event) {
     reader.readAsDataURL(file);
     reader.onloadend = () => {
         const tnsr = canvasToTensor(canvas);
-        console.log(tnsr);
+        // console.log(tnsr);
     }
 }
 

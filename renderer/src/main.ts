@@ -13,7 +13,7 @@ try {
     }
   };
 
-  console.log(window.ASSET_PATH);
+  // console.log(window.ASSET_PATH);
 } catch (error) {
   console.error("Error setting up asset paths:", error);
 }

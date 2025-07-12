@@ -27,7 +27,7 @@
         return toast('danger', entry.message);
       }
       
-      console.log({entry});
+      // console.log({entry});
       taggingStore.taggingEntries.push(entry);
       toast('success',"Successfully Uploaded Media");
   }
